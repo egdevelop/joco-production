@@ -1,9 +1,13 @@
 <?php
 session_start();
 require_once $_SERVER['DOCUMENT_ROOT'] . '/server/config/functions.php';
-
-if ($_POST['submit']) {
-    updatePassword($_POST, $_SESSION['userid']);
+if (isset($_POST['submit'])) {
+    if (updatePassword($_POST, $_SESSION['email'])) {
+        if ($_SESSION['create_password']) {
+            unset($_SESSION['create_password']);
+        }
+        echo "<script>alert('Berhasil memperbaharui sandi');</script>";
+    }
 }
 ?>
 <!doctype html>
@@ -21,7 +25,7 @@ if ($_POST['submit']) {
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <title>Lupa Sandi</title>
+    <title>Ubah Sandi</title>
 </head>
 
 <body>
@@ -34,12 +38,12 @@ if ($_POST['submit']) {
             <div class="container">
                 <a onclick="history.back()" class="text-dark d-flex gap-2 align-items-center justify-content-start">
                     <span class="fz-20 mt-1"><i class="ri-arrow-left-s-line"></i></span>
-                    <span class="fz-16 fw-600">Lupa Sandi</span>
+                    <span class="fz-16 fw-600">Ubah Sandi</span>
                 </a>
             </div>
         </div>
 
-        <!-- Lupa Sandi -->
+        <!-- Ubah Sandi -->
         <section class="py-2 py-lg-4 px-0 px-lg-4 mt-lg-5 pt-lg-5 mb-5">
             <div class="container mt-lg-4 pt-lg-5">
                 <div class="row d-flex justify-content-center gap-2">
@@ -70,7 +74,7 @@ if ($_POST['submit']) {
                                         <ul class="feat-show show">
                                             <li><a href="profilDetail.php">Profil</a></li>
                                             <li><a href="alamat.php">Alamat</a></li>
-                                            <li><a href="ubah-sandi.php" class="activeSubmenu">Lupa sandi</a></li>
+                                            <li><a href="ubah-sandi.php" class="activeSubmenu">Ubah sandi</a></li>
                                             <li><a href="member.php">Member</a></li>
                                         </ul>
                                     </li>
@@ -99,7 +103,7 @@ if ($_POST['submit']) {
                     <div class="col-12 px-0 col-lg-9 p-lg-4 borad-10-res bg-white-res right">
                         <div class="d-none d-lg-flex justify-content-between">
                             <div class="left">
-                                <h6 class="fw-600">Lupa Sandi</h6>
+                                <h6 class="fw-600">Ubah Sandi</h6>
                                 <p class="fz-14 abu">Untuk keamanan akun Anda, mohon untuk tidak menyebarkannya ke orang
                                     lain.
                                 </p>
@@ -109,52 +113,92 @@ if ($_POST['submit']) {
                         <div class="row d-flex gap-2 d-flex justify-content-between">
                             <div class="col-12 left">
                                 <?php if (!$_SESSION['create_password']) { ?>
-                                <div class="row d-none d-lg-flex align-items-center my-3">
-                                    <div class="col-3">
-                                        <label for="sandi1" class="fz-12 col-form-label">Atur Sandimu sekarang</label>
+                                <form action="ubah-sandi.php" method="POST" class="d-block">
+                                    <div class="row d-none d-lg-flex align-items-center my-3">
+                                        <div class="col-2">
+                                            <label for="sandi1" class="fz-12 col-form-label">Sandi saat ini</label>
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="text" id="sandi1" name="sandi1" class="form-control fz-12">
+                                        </div>
+                                        <div class="col-4">
+                                            <a href="lupa-sandi.php" class="text-dark fz-12 w-100">Lupa Sandi?</a>
+                                        </div>
                                     </div>
-                                    <div class="col-7">
-                                        <input type="text" id="sandi1" class="form-control fz-12">
+                                    <div class="row align-items-center my-3 d-flex d-lg-none">
+                                        <div class="col-12 col-lg-9 right">
+                                            <input style="border: none;border-radius: 0; outline:none"
+                                                class="custom-input py-3 gap-3 align-items-center justify-content-center z-1 form-control fz-12"
+                                                type="text" placeholder="Sandi saat ini">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row align-items-center my-3 d-flex d-lg-none">
-                                    <div class="col-12 col-lg-9 right">
-                                        <input style="border: none;border-radius: 0; outline:none"
-                                            class="custom-input py-3 gap-3 align-items-center justify-content-center z-1 form-control fz-12"
-                                            type="text" placeholder="Atur Sandimu sekarang">
-                                    </div>
-                                </div>
+                                </form>
                                 <?php } ?>
-                                <div class="row align-items-center my-3 d-none d-lg-flex">
-                                    <div class="col-3">
-                                        <label for="confirmSandi" class="fz-12 col-form-label">Konfirmasi Sandi</label>
+                                <form action="ubah-sandi.php" method="POST" class="d-block">
+                                    <div class="row row d-flex gap-2 d-flex justify-content-between">
+                                        <div class="col-12 col-lg-8 left">
+                                            <!-- Desktop -->
+                                            <div class="row align-items-center my-3 d-none d-lg-flex">
+                                                <div class="col-4">
+                                                    <label for="sandi" class="fz-12 col-form-label">Atur sandimu
+                                                        sekarang</label>
+                                                </div>
+                                                <div class="col-8">
+                                                    <input id="sandi" class="form-control fz-12" type="text">
+                                                </div>
+                                            </div>
+                                            <!-- Mobile -->
+                                            <div class="row align-items-center my-3 d-flex d-lg-none">
+                                                <div class="col-12 col-lg-9 right">
+                                                    <span class="ms-2 fz-12 fw-600">Masukkan Sandi Baru</span>
+                                                    <input style="border: none;border-radius: 0; outline:none"
+                                                        class="custom-input py-3 gap-3 align-items-center justify-content-center z-1 form-control fz-12"
+                                                        type="text" placeholder="Password">
+                                                </div>
+                                            </div>
+                                            <!-- Desktop -->
+                                            <div class="row align-items-center my-3 d-none d-lg-flex">
+                                                <div class="col-4">
+                                                    <label for="confirmSandi" class="fz-12 col-form-label">Konfirmasi
+                                                        Sandi</label>
+                                                </div>
+                                                <div class="col-8">
+                                                    <input id="confirmSandi" class="form-control fz-12" type="text">
+                                                </div>
+                                            </div>
+                                            <!-- Mobile -->
+                                            <div class="row align-items-center my-3 d-flex d-lg-none">
+                                                <div class="col-12 col-lg-9 right">
+                                                    <span class="ms-2 fz-12 fw-600">Konfirmasi Sandi Baru</span>
+                                                    <input style="border: none;border-radius: 0; outline:none"
+                                                        class="custom-input py-3 gap-3 align-items-center justify-content-center z-1 form-control fz-12"
+                                                        type="text" placeholder="Password">
+                                                </div>
+                                            </div>
+                                            <!-- Desktop -->
+                                            <div class="row d-none d-lg-flex">
+                                                <div class="col-4"></div>
+                                                <div class="col-12 col-lg-8">
+                                                    <a href="#"
+                                                        class="btn text-light fz-12 bg-blue px-4 py-2 borad-10 w-auto"
+                                                        type="submit" name="submit">Konfirmasi</a>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="col-7">
-                                        <input type="text" id="confirmSandi" class="form-control fz-12">
-                                    </div>
-                                </div>
-                                <div class="row align-items-center my-3 d-flex d-lg-none">
-                                    <div class="col-12 col-lg-9 right">
-                                        <input style="border: none;border-radius: 0; outline:none"
-                                            class="custom-input py-3 gap-3 align-items-center justify-content-center z-1 form-control fz-12"
-                                            type="text" placeholder="Konfirmasi Sandi">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-3"></div>
-                                    <div class="col-12 col-lg-6 ms-2">
-                                        <a href="#"
-                                            class="btn me-2 text-light fz-12 bg-blue px-4 py-2 borad-10 w-auto">Konfirmasi</a>
-                                    </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+
         <!-- Navbar Bottom -->
-        <?php include "components/navBottomAkun.php"; ?>
+        <a href="#"
+            class="position-fixed bottom-0 start-0 py-3 end-0 bg-blue text-light d-flex d-lg-none justify-content-center">
+            Simpan
+        </a>
 
     </div>
 

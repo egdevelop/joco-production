@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <link rel="icon" href="assets/img/favicon.png" type="image/png">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -19,16 +19,27 @@
 <body>
 
     <div class="body-wrapper">
-        <?php include "components/navbar.php" ?>
-
-        <!-- Flash Sale -->
-        <section style="margin-top: 7rem;" class="py-2 py-sm-4 px-0 px-sm-4 mt-profile mb-5">
+        <div class="d-none d-lg-block">
+            <?php include "components/navbarAkun.php" ?>
+        </div>
+        <div class="bg-white pt-4 pb-3 mb-1 d-block d-lg-none">
             <div class="container">
-                <div class="row d-flex justify-content-between">
-                    <div class="col-2 left bg-white borad-10 p-4">
+                <a onclick="history.back()" class="text-dark d-flex gap-2 align-items-center justify-content-start">
+                    <span class="fz-20 mt-1"><i class="ri-arrow-left-s-line"></i></span>
+                    <span class="fz-16 fw-600">Ubah Email</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Ubah Email -->
+        <section class="py-2 py-lg-4 px-0 px-lg-4 mt-lg-5 pt-lg-5 mb-5">
+            <div class="container mt-lg-4 pt-lg-5">
+                <div class="row d-flex justify-content-center gap-2">
+                    <div class="col-2 left bg-white borad-10 p-4 d-none d-lg-block">
                         <div class="d-flex gap-2">
                             <div class="profile">
-                                <img src="<?= ($_SESSION['picture']) ?  $_SESSION['picture'] : "assets/img/profile.jpg" ?>" alt="" class="profileImg">
+                                <img src="<?= ($_SESSION['picture']) ?  $_SESSION['picture'] : "assets/img/profile.jpg" ?>"
+                                    alt="" class="profileImg">
                             </div>
                             <div class="d-flex flex-column">
                                 <span class="fz-12 fw-bold">Naufal</span>
@@ -76,36 +87,51 @@
                             </nav>
                         </div>
                     </div>
-                    <div class="col-9 right bg-white borad-10 p-4">
+                    <div class="col-12 px-0 col-lg-9 p-lg-4 borad-10-res bg-white-res right">
                         <div class="d-flex justify-content-between">
                             <div class="left">
-                                <h6 class="fw-600">Ubah Email</h6>
-                                <p class="fz-14 abu">Silahkan masukkan Email baru anda</p>
+                                <h6 class="fw-600 d-none d-lg-block">Ubah Email</h6>
+                                <p class="fz-14 abu d-none d-lg-block">Silahkan masukkan Email baru anda</p>
                             </div>
                         </div>
-                        <hr class="my-2 py-0">
+                        <hr class="my-2 py-0 d-none d-lg-block">
                         <div class="row d-flex gap-2 d-flex justify-content-between">
-                            <div class="col-8 left">
-                                <div class="row align-items-center my-3">
+                            <div class="col-12 col-lg-8 left">
+                                <div class="row align-items-center my-3 d-none d-lg-flex">
                                     <div class="col-4">
-                                        <label for="sandi" class="fz-12 col-form-label">Masukkan Email Baru</label>
+                                        <label for="email" class="fz-12">Masukkan Email Baru</label>
                                     </div>
                                     <div class="col-8">
-                                        <input type="text" id="sandi" class="form-control fz-12">
+                                        <input type="text" id="email" class="form-control fz-12">
                                     </div>
                                 </div>
-                                <div class="row align-items-center my-3">
+                                <div class="row align-items-center d-flex d-lg-none">
+                                    <div class="col-12 col-lg-9 right">
+                                        <input style="border: none; outline:none"
+                                            class="custom-input bg-white py-3 gap-3 align-items-center justify-content-center z-1 form-control fz-12"
+                                            type="text" placeholder="Masukkan Email Baru">
+                                    </div>
+                                </div>
+                                <div class="row align-items-center my-3 d-none d-lg-flex">
                                     <div class="col-4">
-                                        <label for="emailConfirm" class="fz-12 col-form-label">Konfirmasi Email</label>
+                                        <label for="confirmEmail" class="fz-12 col-form-label">Konfirmasi Email</label>
                                     </div>
                                     <div class="col-8">
-                                        <input type="text" id="emailConfirm" class="form-control fz-12">
+                                        <input type="text" id="confirmEmail" class="form-control fz-12">
+                                    </div>
+                                </div>
+                                <div class="row align-items-center d-flex d-lg-none my-3">
+                                    <div class="col-12 col-lg-9 right">
+                                        <input style="border: none; outline:none"
+                                            class="custom-input bg-white py-3 gap-3 align-items-center justify-content-center z-1 form-control fz-12"
+                                            type="text" placeholder="Konfirmasi Email">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-4"></div>
-                                    <div class="col-8">
-                                        <a href="#" class="btn text-light fz-12 bg-blue px-4 py-2 borad-10 w-auto">Ganti
+                                    <div class="col-12 col-lg-8">
+                                        <a href="ubah-email2.php"
+                                            class="ms-2 btn text-light fz-12 bg-blue px-4 py-2 borad-10 w-auto">Ganti
                                             Email</a>
                                     </div>
                                 </div>
@@ -114,8 +140,9 @@
                     </div>
                 </div>
             </div>
-    </div>
-    </section>
+        </section>
+        <!-- Navbar Bottom -->
+        <?php include "components/navBottomAkun.php"; ?>
 
     </div>
 

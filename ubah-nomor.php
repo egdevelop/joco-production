@@ -13,7 +13,7 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <title>Ubah Email</title>
+    <title>Ubah Nomor Telepon</title>
 </head>
 
 <body>
@@ -26,7 +26,7 @@
             <div class="container">
                 <a onclick="history.back()" class="text-dark d-flex gap-2 align-items-center justify-content-start">
                     <span class="fz-20 mt-1"><i class="ri-arrow-left-s-line"></i></span>
-                    <span class="fz-16 fw-600">Masukkan sandi untuk lanjut</span>
+                    <span class="fz-16 fw-600">Ubah Nomor Telepon</span>
                 </a>
             </div>
         </div>
@@ -90,50 +90,64 @@
                     <div class="col-12 px-0 col-lg-9 p-lg-4 borad-10-res bg-white-res right">
                         <div class="d-flex justify-content-between">
                             <div class="left">
-                                <h6 class="fw-600 d-none d-lg-block">Masukkan Sandi Untuk Lanjut</h6>
-                                <p class="fz-14 abu d-none d-lg-block">Untuk mengubah email silahkan masukkan sandi
-                                    anda</p>
+                                <h6 class="fw-600 d-none d-lg-block">Masukkan OTP</h6>
+                                <p class="fz-14 abu d-none d-lg-block">Sebelum ubah nomor telepon, silahkan masukkan
+                                    kode otp terlebih dahulu</p>
                             </div>
                         </div>
                         <hr class="my-2 py-0 d-none d-lg-block">
                         <div class="row d-flex gap-2 d-flex justify-content-between">
                             <div class="col-12 col-lg-8 left">
+                                <!-- Desktop -->
                                 <div class="row align-items-center my-3 d-none d-lg-flex">
                                     <div class="col-3">
-                                        <span class="fz-12">Email</span>
+                                        <label for="nomor" class="fz-12 col-form-label">Nomor Telepon</label>
                                     </div>
                                     <div class="col-9">
-                                        <span class="fz-12 fw-500">123****ail@gmail.com</span>
+                                        <span class="fz-12">***********12</span>
                                     </div>
                                 </div>
-                                <div class="row align-items-center d-flex d-lg-none">
-                                    <div class="col-12 col-lg-9 right">
-                                        <span class="fz-10 fw-600 abu ms-2">Email</span>
-                                        <input style="border: none;border-radius: 0; outline:none"
+                                <!-- Mobile -->
+                                <div class="row align-items-center my-3 d-flex d-lg-none">
+                                    <div class="col-12 col-lg-9 right position-relative">
+                                        <input style="background:#fff; border: none;border-radius: 0; outline:none;"
                                             class="custom-input py-3 gap-3 align-items-center justify-content-center z-1 form-control fz-12"
-                                            type="text" value="123****ail@gmail.com" disabled>
+                                            type="text" disabled>
+                                        <span class="fz-12 position-absolute email">No. Handphone</span>
+                                        <span class="fz-12 position-absolute isi">********01</span>
                                     </div>
                                 </div>
+                                <!-- Desktop -->
                                 <div class="row align-items-center my-3 d-none d-lg-flex">
                                     <div class="col-3">
-                                        <label for="sandi" class="fz-12 col-form-label">Sandi</label>
+                                        <label for="otp" class="fz-12 col-form-label">Masukkan No. OTP</label>
                                     </div>
-                                    <div class="col-9">
-                                        <input type="text" id="sandi" class="form-control fz-12">
-                                    </div>
-                                </div>
-                                <div class="row align-items-center d-flex d-lg-none my-3">
-                                    <div class="col-12 col-lg-9 right">
-                                        <span class="fz-10 fw-600 abu ms-2">Sandi</span>
-                                        <input style="border: none; outline:none"
-                                            class="custom-input bg-white py-3 gap-3 align-items-center justify-content-center z-1 form-control fz-12"
-                                            type="text" placeholder="Masukkan sandi">
+                                    <div class="col-9 d-flex fz-12">
+                                        <input class="form-control fz-12" type="text">
+                                        <button class="btn bg-blue text-light fz-12"
+                                            type="submit">Kirim&nbsp;OTP</button>
                                     </div>
                                 </div>
-                                <div class="row">
+                                <!-- Mobile -->
+                                <div class="row align-items-center my-3 d-flex d-lg-none">
+                                    <label for="otp" class="ms-2 fz-12 fw-600 col-form-label">Masukkan No.
+                                        OTP</label>
+                                    <div class="d-flex">
+                                        <input style="background:#fff; border: none;border-radius: 0; outline:none;"
+                                            class="custom-input py-3 gap-3 align-items-center justify-content-center z-1 form-control fz-12"
+                                            type="text">
+                                        <button class="btn bg-blue text-light fz-12"
+                                            type="submit">Kirim&nbsp;OTP</button>
+                                    </div>
+                                    <span style="width: 80%" class="ms-2 mt-2 abu fz-10">
+                                        *Maksimal pemakain OTP 2 Menit setelah itu silahkan kirim ulang OTP
+                                    </span>
+                                </div>
+                                <!-- Desktop -->
+                                <div class="row d-none d-lg-flex">
                                     <div class="col-3"></div>
                                     <div class="col-12 col-lg-9">
-                                        <a href="ubah-email2.php"
+                                        <a href="ubah-nomor2.php"
                                             class="ms-2 btn text-light fz-12 bg-blue px-4 py-2 borad-10 w-auto">Konfirmasi</a>
                                     </div>
                                 </div>
@@ -143,8 +157,12 @@
                 </div>
             </div>
         </section>
+
         <!-- Navbar Bottom -->
-        <?php include "components/navBottomAkun.php"; ?>
+        <a href="ubah-nomor2.php"
+            class="position-fixed bottom-0 start-0 py-3 end-0 bg-blue text-light d-flex d-lg-none justify-content-center">
+            Lanjutkan
+        </a>
 
     </div>
 

@@ -4,18 +4,21 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 ?>
 <!-- Mobile Navbar -->
-<div class="main-nav w-100 position-fixed z-3 d-block d-sm-none pb-4">
+<div class="bg-blue position-fixed top-0 start-0 end-0 pt-4 pb-3 mb-1 d-block d-md-none">
     <div class="container">
-        <form class="pb-1 pt-4 d-flex gap-3 align-items-center justify-content-center nosubmit">
-            <input class="nosubmit z-1 form-control" type="search" placeholder="Cari produk" aria-label="Search">
-            <a href="keranjang.php" class="text-light iconNavbar z-1"><i class="ri-shopping-cart-line"></i></a>
-            <span class="iconNavbar z-1"><i class="ri-customer-service-2-line"></i></span>
+        <a onclick="history.back()" class="text-light d-flex gap-2 align-items-center justify-content-start">
+            <span class="fz-20"><i class="ri-arrow-left-s-line"></i></span>
+            <span class="fz-16 fw-600">Chat</span>
+        </a>
+        <form class="pb-1 pt-3 d-flex gap-3 align-items-center justify-content-center nosubmit">
+            <input style="font-size: 12px;" class="nosubmit z-1 form-control" type="search" placeholder="Cari chat"
+                aria-label="Search">
         </form>
     </div>
 </div>
 
 <!-- Desktop Navbar -->
-<div class="bg-blue py-2 w-100 position-fixed z-3 d-none d-sm-block">
+<div class="bg-blue py-2 w-100 position-fixed z-3 d-none d-md-block">
     <div class="container">
         <div class="d-flex justify-content-between">
             <div class="left d-flex gap-2 align-items-center">

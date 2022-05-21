@@ -1,5 +1,7 @@
 <?php
+session_start();
 require $_SERVER['DOCUMENT_ROOT'] . '/server/config/functions.php';
+$user = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM users WHERE email = '$_SESSION[email]'"));
 ?>
 <!doctype html>
 <html lang="en">
@@ -8,9 +10,10 @@ require $_SERVER['DOCUMENT_ROOT'] . '/server/config/functions.php';
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <link rel="icon" href="assets/img/favicon.png" type="image/png">
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css?<?php echo time(); ?>">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -21,19 +24,21 @@ require $_SERVER['DOCUMENT_ROOT'] . '/server/config/functions.php';
 <body>
 
     <div class="body-wrapper">
-        <?php include "components/navbar.php" ?>
+        <?php include "components/navbarAkun.php" ?>
 
-        <!-- Flash Sale -->
-        <section style="margin-top: 7rem;" class="py-2 py-sm-4 px-0 px-sm-4 mt-profile mb-5">
+        <!-- Desktop -->
+        <section style="margin-top: 9rem;" class="d-none d-lg-block py-2 py-lg-4 px-0 px-lg-4 mt-profile mb-5">
             <div class="container">
-                <div class="row d-flex justify-content-between">
+                <div class="row d-flex justify-content-center gap-2">
                     <div class="col-2 left bg-white borad-10 p-4">
                         <div class="d-flex gap-2">
                             <div class="profile">
-                                <img src="<?= ($_SESSION['picture']) ?  $_SESSION['picture'] : "assets/img/profile.jpg" ?>" alt="" class="profileImg">
+                                <img src="<?= ($_SESSION['picture']) ?  $_SESSION['picture'] : "assets/img/profile.jpg" ?>"
+                                    alt="" class="profileImg">
                             </div>
                             <div class="d-flex flex-column">
-                                <span class="fz-12 fw-bold"><?= ($_SESSION['name']) ?  $_SESSION['name'] : "Naufal" ?></span>
+                                <span
+                                    class="fz-12 fw-bold"><?= ($_SESSION['name']) ?  $_SESSION['name'] : "Naufal" ?></span>
                                 <div class="d-flex gap-2 align-items-center">
                                     <span class="abu"><i class="ri-edit-2-fill"></i></span>
                                     <span class="fz-10 fw-600 abu">Ubah profil</span>
@@ -44,7 +49,8 @@ require $_SERVER['DOCUMENT_ROOT'] . '/server/config/functions.php';
                             <nav>
                                 <ul class="menu">
                                     <li class="fz-12">
-                                        <a onclick="location.href = 'profilDetail.php';" class="cursor-pointer feat-btn activeMenu">
+                                        <a onclick="location.href = 'profilDetail.php';"
+                                            class="cursor-pointer feat-btn activeMenu">
                                             <span class="blue"><i class="ri-user-line"></i></span>
                                             <span>Akun saya</span>
                                         </a>
@@ -97,7 +103,8 @@ require $_SERVER['DOCUMENT_ROOT'] . '/server/config/functions.php';
                                         <span class="fz-12">Username</span>
                                     </div>
                                     <div class="col-9">
-                                        <span class="fz-12 fw-600"><?= ($_SESSION['name']) ?  $_SESSION['name'] : "Naufal" ?></span>
+                                        <span
+                                            class="fz-12 fw-600"><?= ($_SESSION['name']) ?  $_SESSION['name'] : "Naufal" ?></span>
                                     </div>
                                 </div>
                                 <div class="row align-items-center my-3">
@@ -105,7 +112,8 @@ require $_SERVER['DOCUMENT_ROOT'] . '/server/config/functions.php';
                                         <label for="name" class="fz-12 col-form-label">Name</label>
                                     </div>
                                     <div class="col-9">
-                                        <input type="text" name="name" id="name" class="form-control fz-12" value="">
+                                        <input type="text" name="name" id="name" value="<?= $user['name'] ?>"
+                                            class="form-control fz-12" />
                                     </div>
                                 </div>
                                 <div class="row align-items-center my-3">
@@ -113,8 +121,9 @@ require $_SERVER['DOCUMENT_ROOT'] . '/server/config/functions.php';
                                         <span class="fz-12">Email</span>
                                     </div>
                                     <div class="col-9">
-                                        <span class="fz-12 fw-500"><?= ($_SESSION['email']) ?  censoredEmail($_SESSION['email']) : "123****ail@gmail.com" ?></span>
-                                        <a href="ubah-email.php" class="blue fz-12 text-decoration-underline">Ubah</a>
+                                        <span
+                                            class="fz-12 fw-500"><?= ($_SESSION['email']) ?  censoredEmail($_SESSION['email']) : "123****ail@gmail.com" ?></span>
+                                        <!-- <a href="ubah-email.php" class="blue fz-12 text-decoration-underline">Ubah</a> -->
                                     </div>
                                 </div>
                                 <div class="row align-items-center my-3">
@@ -122,8 +131,10 @@ require $_SERVER['DOCUMENT_ROOT'] . '/server/config/functions.php';
                                         <span class="fz-12">Nomor Telepon</span>
                                     </div>
                                     <div class="col-9">
-                                        <span class="fz-12 fw-500">***********12</span>
-                                        <a href="" class="blue fz-12 text-decoration-underline">Ubah</a>
+                                        <span
+                                            class="fz-12 fw-500"><?= ($user['no_hp'] != "") ? $user['no_hp'] : "Belum Di Atur"  ?></span>
+                                        <a href="ubah-nomor.php"
+                                            class="blue fz-12 text-decoration-underline"><?= ($user['no_hp'] != "") ? "Ubah" : "Tambah"  ?></a>
                                     </div>
                                 </div>
                                 <div class="row align-items-center my-3">
@@ -132,15 +143,18 @@ require $_SERVER['DOCUMENT_ROOT'] . '/server/config/functions.php';
                                     </div>
                                     <div class="col-9">
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="gender" id="inlineRadio1" value="laki-laki">
+                                            <input class="form-check-input" type="radio" name="gender" id="inlineRadio1"
+                                                value="laki-laki">
                                             <label class="form-check-label fz-12" for="inlineRadio1">Laki-laki</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="gender" id="inlineRadio2" value="perempuan">
+                                            <input class="form-check-input" type="radio" name="gender" id="inlineRadio2"
+                                                value="perempuan">
                                             <label class="form-check-label fz-12" for="inlineRadio2">Perempuan</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="gender" id="inlineRadio3" value="lainnya">
+                                            <input class="form-check-input" type="radio" name="gender" id="inlineRadio3"
+                                                value="lainnya">
                                             <label class="form-check-label fz-12" for="inlineRadio3">Lainnya</label>
                                         </div>
                                     </div>
@@ -152,7 +166,8 @@ require $_SERVER['DOCUMENT_ROOT'] . '/server/config/functions.php';
                                     <div class="col-9">
                                         <div class="row">
                                             <div class="col-4">
-                                                <select class="form-select fz-12" aria-label="Default select example" name="tanggal">
+                                                <select class="form-select fz-12" aria-label="Default select example"
+                                                    name="tanggal">
                                                     <option value="1">1</option>
                                                     <option value="2">2</option>
                                                     <option value="3">3</option>
@@ -187,7 +202,8 @@ require $_SERVER['DOCUMENT_ROOT'] . '/server/config/functions.php';
                                                 </select>
                                             </div>
                                             <div class="col-4">
-                                                <select class="form-select fz-12" aria-label="Default select example" name="bulan">
+                                                <select class="form-select fz-12" aria-label="Default select example"
+                                                    name="bulan">
                                                     <option value="januari">Januari</option>
                                                     <option value="februari">Februari</option>
                                                     <option value="maret">Maret</option>
@@ -203,7 +219,8 @@ require $_SERVER['DOCUMENT_ROOT'] . '/server/config/functions.php';
                                                 </select>
                                             </div>
                                             <div class="col-4">
-                                                <select class="form-select fz-12" aria-label="Default select example" name="tahun">
+                                                <select class="form-select fz-12" aria-label="Default select example"
+                                                    name="tahun">
                                                     <option selected value="1999">1999</option>
                                                     <option value="2000">2000</option>
                                                     <option value="2001">2001</option>
@@ -234,14 +251,16 @@ require $_SERVER['DOCUMENT_ROOT'] . '/server/config/functions.php';
                                     </div>
                                     <div class="row">
                                         <div class="col-3 mt-3">
-                                            <button class="btn text-light fz-12 bg-blue px-4 py-2 borad-10 w-auto">Simpan</button>
+                                            <button class="btn text-light fz-12 bg-blue px-4 py-2 borad-10 w-auto"
+                                                type="submit">Simpan</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-3 right d-flex flex-column align-items-center gap-3">
                                 <div class="profileBig">
-                                    <img src="<?= ($_SESSION['picture']) ?  $_SESSION['picture'] : "assets/img/profile.jpg" ?>" alt="" class="profileImgBig">
+                                    <img src="<?= ($_SESSION['picture']) ?  $_SESSION['picture'] : "assets/img/profile.jpg" ?>"
+                                        alt="" class="profileImgBig">
                                 </div>
                                 <button class="btn text-light fz-12 bg-blue px-4 py-2 borad-10 w-auto">Pilih
                                     Gambar</button>
@@ -254,41 +273,126 @@ require $_SERVER['DOCUMENT_ROOT'] . '/server/config/functions.php';
             </div>
         </section>
 
-    </div>
+        <!-- Mobile -->
+        <div class="bg-white container d-block d-lg-none py-3">
+            <div style=" margin-top: 7rem;">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div class="left d-flex gap-1">
+                        <span class="fz-14 blue"><i class="ri-user-line"></i></span>
+                        <span class="fz-12 fw-600">Akun Saya</span>
+                    </div>
+                    <div class="right d-flex align-items-center gap-1">
+                        <img src="assets/img/google.svg" alt="">
+                        <span class="fz-10 fw-500">Telah masuk dengan google</span>
+                    </div>
+                </div>
+                <hr>
+                <div class="d-flex flex-column align-items-center gap-3">
+                    <div class="profileBig">
+                        <img src="<?= ($_SESSION['picture']) ?  $_SESSION['picture'] : "assets/img/profile.jpg" ?>"
+                            alt="" class="profileImgBig">
+                    </div>
+                    <div class="btn text-light fz-12 bg-blue px-3 py-1 borad-10 w-auto">Member</div>
+                    <a href="ubah-profil.php" class="bg-profile px-5 py-2">
+                        <span class="abu"><i class="ri-edit-2-fill"></i></span>
+                        <span class="abu fz-12">Ubah profil</span>
+                    </a>
+                </div>
+            </div>
 
-    <script src="assets/js/jquery-3.4.1.min.js"></script>
-    <script src="assets/js/menu.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
-    </script>
-    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-    <script src="https://kit.fontawesome.com/a076d005399.js"></script>
-    <script>
-        $('.feat-btn').click(function() {
-            $('nav ul .feat-show').toggleClass('show');
-            $('nav ul .serv-show').removeClass('show1');
-        });
-        $('.serv-btn').click(function() {
-            $('nav ul .serv-show').toggleClass('show1');
-            $('nav ul .feat-show').removeClass('show');
-        });
-        $('.mainMenu').click(function() {
-            $('nav ul .feat-show').removeClass('show');
-            $('nav ul .serv-show').removeClass('show1');
-        });
-        $('nav ul li').click(function() {
-            $(this).addClass('activeMenuSide').siblings.removeClass('activeMenuSide');
-        });
+            <div class="bg-white container mt-3 py-3">
+                <a href="pesanan-saya.php" class="text-dark d-flex align-items-center justify-content-between">
+                    <div href="pesanan-saya.php" class="text-dark d-flex align-items-center gap-2">
+                        <span class="blue fz-14"><i class="ri-file-list-3-line"></i></span>
+                        <span class="fz-12 fw-500">Pesanan Saya</span>
+                    </div>
+                    <div class="right">
+                        <span><i class="ri-arrow-right-s-line"></i></span>
+                    </div>
+                </a>
+                <hr>
+                <a href="voucher-akun.php" class="text-dark d-flex align-items-center justify-content-between">
+                    <div class="d-flex align-items-center gap-2">
+                        <span class="blue fz-14"><i class="ri-coupon-2-line"></i></span>
+                        <span class="fz-12 fw-500">Voucher Saya</span>
+                    </div>
+                    <div class="right">
+                        <span><i class="ri-arrow-right-s-line"></i></span>
+                    </div>
+                </a>
+                <hr>
+                <a href="member.php" class="text-dark d-flex align-items-center justify-content-between">
+                    <div class="d-flex align-items-center gap-2">
+                        <span class="blue fz-14"><i class="ri-group-line"></i></span>
+                        <span class="fz-12 fw-500">Member</span>
+                    </div>
+                    <div class="right d-flex align-items-center">
+                        <div class="left">
+                            <span class="fz-12">Aktif</span>
+                        </div>
+                        <div class="left mt-2">
+                            <span style="font-size: 16px;"><i class="ri-arrow-right-s-line"></i></span>
+                        </div>
+                    </div>
+                </a>
+                <hr>
+                <a href="pengaturan-akun.php" class="d-flex align-items-center justify-content-between">
+                    <div class="d-flex align-items-center gap-2">
+                        <span class="blue fz-14"><i class="ri-settings-2-line"></i></span>
+                        <span class="fz-12 fw-500 text-dark">Pengaturan Akun</span>
+                    </div>
+                    <div class="right">
+                        <span><i class="text-dark ri-arrow-right-s-line"></i></span>
+                    </div>
+                </a>
+            </div>
 
-        var mainNav = document.querySelector('.main-nav');
+            <div class="bg-white container mt-3 py-3" style="margin-bottom: 7rem;">
+                <a href="bantuan-akun.php" class="text-dark d-flex align-items-center justify-content-between">
+                    <div class="left d-flex align-items-center gap-2">
+                        <span class="blue fz-14"><i class="ri-message-3-line"></i></span>
+                        <span class="fz-12 fw-500">Bantuan Akun</span>
+                    </div>
+                    <div class="right">
+                        <span><i class="ri-arrow-right-s-line"></i></span>
+                    </div>
+                </a>
+                <hr>
+                <a href="server/Login/logout.php" class="d-flex align-items-center justify-content-between">
+                    <div class="left d-flex align-items-center gap-2">
+                        <span class="blue fz-14"><i class="ri-logout-box-line"></i></span>
+                        <span class="fz-12 fw-500 text-dark">Logout</span>
+                    </div>
+                    <div class="right text-dark">
+                        <span><i class="ri-arrow-right-s-line"></i></span>
+                    </div>
+                </a>
+            </div>
 
-        window.onscroll = function() {
-            windowScroll();
-        };
+            <!-- Navbar Bottom -->
+            <?php include "components/navBottomAkun.php"; ?>
 
-        function windowScroll() {
-            mainNav.classList.toggle("bg-blue", mainNav.scrollTop > 50 || document.documentElement.scrollTop > 50);
-        }
-    </script>
+            <script src="assets/js/jquery-3.4.1.min.js"></script>
+            <script src="assets/js/menu.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+                crossorigin="anonymous">
+            </script>
+            <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+            <script src="https://kit.fontawesome.com/a076d005399.js"></script>
+            <script>
+            $('.serv-btn').click(function() {
+                $('nav ul .serv-show').toggleClass('show1');
+                $('nav ul .feat-show').removeClass('show');
+            });
+            $('.mainMenu').click(function() {
+                $('nav ul .feat-show').removeClass('show');
+                $('nav ul .serv-show').removeClass('show1');
+            });
+            $('nav ul li').click(function() {
+                $(this).addClass('activeMenuSide').siblings.removeClass('activeMenuSide');
+            });
+            </script>
 </body>
 
 </html>

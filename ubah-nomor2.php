@@ -13,7 +13,7 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <title>Ubah Email</title>
+    <title>Ubah Nomor Telepon</title>
 </head>
 
 <body>
@@ -26,7 +26,7 @@
             <div class="container">
                 <a onclick="history.back()" class="text-dark d-flex gap-2 align-items-center justify-content-start">
                     <span class="fz-20 mt-1"><i class="ri-arrow-left-s-line"></i></span>
-                    <span class="fz-16 fw-600">Masukkan sandi untuk lanjut</span>
+                    <span class="fz-16 fw-600">Ubah Nomor Telepon</span>
                 </a>
             </div>
         </div>
@@ -90,50 +90,55 @@
                     <div class="col-12 px-0 col-lg-9 p-lg-4 borad-10-res bg-white-res right">
                         <div class="d-flex justify-content-between">
                             <div class="left">
-                                <h6 class="fw-600 d-none d-lg-block">Masukkan Sandi Untuk Lanjut</h6>
-                                <p class="fz-14 abu d-none d-lg-block">Untuk mengubah email silahkan masukkan sandi
-                                    anda</p>
+                                <h6 class="fw-600 d-none d-lg-block">Ubah No. Telepon</h6>
+                                <p class="fz-14 abu d-none d-lg-block">Silahkan ubah nomor telepon</p>
                             </div>
                         </div>
                         <hr class="my-2 py-0 d-none d-lg-block">
                         <div class="row d-flex gap-2 d-flex justify-content-between">
                             <div class="col-12 col-lg-8 left">
+                                <!-- Desktop -->
                                 <div class="row align-items-center my-3 d-none d-lg-flex">
-                                    <div class="col-3">
-                                        <span class="fz-12">Email</span>
+                                    <div class="col-4">
+                                        <label for="nomor" class="fz-12 col-form-label">Atur No. Telepon
+                                            sekarang</label>
                                     </div>
-                                    <div class="col-9">
-                                        <span class="fz-12 fw-500">123****ail@gmail.com</span>
+                                    <div class="col-8">
+                                        <input class="form-control fz-12" type="text">
                                     </div>
                                 </div>
+                                <!-- Mobile -->
                                 <div class="row align-items-center d-flex d-lg-none">
                                     <div class="col-12 col-lg-9 right">
-                                        <span class="fz-10 fw-600 abu ms-2">Email</span>
+                                        <span class="fz-12 fw-600 ms-2">Masukkan Nomor Telepon Baru</span>
                                         <input style="border: none;border-radius: 0; outline:none"
                                             class="custom-input py-3 gap-3 align-items-center justify-content-center z-1 form-control fz-12"
-                                            type="text" value="123****ail@gmail.com" disabled>
+                                            type="text" placeholder="No. Telepon">
                                     </div>
                                 </div>
+                                <!-- Desktop -->
                                 <div class="row align-items-center my-3 d-none d-lg-flex">
-                                    <div class="col-3">
-                                        <label for="sandi" class="fz-12 col-form-label">Sandi</label>
+                                    <div class="col-4">
+                                        <label for="otp" class="fz-12 col-form-label">Konfirmasi No. Telepon</label>
                                     </div>
-                                    <div class="col-9">
-                                        <input type="text" id="sandi" class="form-control fz-12">
+                                    <div class="col-8">
+                                        <input class="form-control fz-12" type="text">
                                     </div>
                                 </div>
+                                <!-- Mobile -->
                                 <div class="row align-items-center d-flex d-lg-none my-3">
                                     <div class="col-12 col-lg-9 right">
-                                        <span class="fz-10 fw-600 abu ms-2">Sandi</span>
+                                        <span class="fz-12 fw-600 ms-2">Konfirmasi Nomor Telepon Baru</span>
                                         <input style="border: none; outline:none"
                                             class="custom-input bg-white py-3 gap-3 align-items-center justify-content-center z-1 form-control fz-12"
-                                            type="text" placeholder="Masukkan sandi">
+                                            type="text" placeholder="No. Telepon">
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-3"></div>
-                                    <div class="col-12 col-lg-9">
-                                        <a href="ubah-email2.php"
+                                <!-- Desktop -->
+                                <div class="row d-none d-lg-flex">
+                                    <div class="col-4"></div>
+                                    <div class="col-12 col-lg-8">
+                                        <a href="#"
                                             class="ms-2 btn text-light fz-12 bg-blue px-4 py-2 borad-10 w-auto">Konfirmasi</a>
                                     </div>
                                 </div>
@@ -143,8 +148,12 @@
                 </div>
             </div>
         </section>
+
         <!-- Navbar Bottom -->
-        <?php include "components/navBottomAkun.php"; ?>
+        <a href="#"
+            class="position-fixed bottom-0 start-0 py-3 end-0 bg-blue text-light d-flex d-lg-none justify-content-center">
+            Simpan
+        </a>
 
     </div>
 

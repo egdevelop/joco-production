@@ -4,7 +4,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 ?>
 <!-- Mobile Navbar -->
-<div class="main-nav w-100 position-fixed z-3 d-block d-sm-none pb-4">
+<div class="bg-blue main-nav w-100 position-fixed z-3 d-block d-lg-none pb-4">
     <div class="container">
         <form class="pb-1 pt-4 d-flex gap-3 align-items-center justify-content-center nosubmit">
             <input class="nosubmit z-1 form-control" type="search" placeholder="Cari produk" aria-label="Search">
@@ -15,7 +15,7 @@ if (session_status() === PHP_SESSION_NONE) {
 </div>
 
 <!-- Desktop Navbar -->
-<div class="bg-blue py-2 w-100 position-fixed z-3 d-none d-sm-block">
+<div class="bg-blue py-2 w-100 position-fixed z-3 d-none d-lg-block">
     <div class="container">
         <div class="d-flex justify-content-between">
             <div class="left d-flex gap-2 align-items-center">
